@@ -14,6 +14,8 @@ class CCounterEdit : public QDialog
 public:
 	explicit CCounterEdit(QWidget *parent = 0);
 	~CCounterEdit();
+    void addCounterData();
+    void editCounterData();
 
 private slots:
     void on_pushButtonCountCansel_clicked();
@@ -21,6 +23,7 @@ private slots:
     void on_pushButtonCounterSave_clicked();
 
 	void on_tbCountDate_clicked();
+
 
 private:
     Ui::CounterEdit *ui;

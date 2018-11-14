@@ -23,25 +23,35 @@ void CCounterEdit::on_pushButtonCountCansel_clicked()
 
 void CCounterEdit::on_pushButtonCounterSave_clicked()
 {
-	QSqlQuery query;
-	query.prepare("INSERT INTO counters (date, gas, electro, hotw, coldw) "
-				  "VALUES (:date, :gas, :electro, :hotw, :coldw)");
-	query.bindValue( ":date",    ui->dateEditCount->date() );
-	query.bindValue( ":gas",     ui->lineEditGas->text().toInt() );
-	query.bindValue( ":electro", ui->lineEditElectro->text().toInt() );
-	query.bindValue( ":hotw",     ui->lineEditHot->text().toInt() );
-	query.bindValue( ":coldw",    ui->lineEditCold->text().toInt() );
-	query.exec();
-
-	if ( query.lastError().type() != QSqlError::NoError )
-	{
-		qCritical() << query.lastError().text();
-	}
-
-	CCounterEdit::accept();
+    addCounterData();
 }
 
 void CCounterEdit::on_tbCountDate_clicked()
+{
+
+}
+
+void CCounterEdit::addCounterData()
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO counters (date, gas, electro, hotw, coldw) "
+                  "VALUES (:date, :gas, :electro, :hotw, :coldw)");
+    query.bindValue( ":date",    ui->dateEditCount->date() );
+    query.bindValue( ":gas",     ui->lineEditGas->text().toInt() );
+    query.bindValue( ":electro", ui->lineEditElectro->text().toInt() );
+    query.bindValue( ":hotw",     ui->lineEditHot->text().toInt() );
+    query.bindValue( ":coldw",    ui->lineEditCold->text().toInt() );
+    query.exec();
+
+    if ( query.lastError().type() != QSqlError::NoError )
+    {
+        qCritical() << query.lastError().text();
+    }
+
+    CCounterEdit::accept();
+}
+
+void CCounterEdit::editCounterData()
 {
 
 }
